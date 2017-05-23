@@ -58,7 +58,7 @@ public class VizinhoMaisProximo {
 		}
 		int lineIndex = 0;
 		for(String line : fileLines){
-			fileLines.set(lineIndex, fileLines.get(lineIndex).replaceAll(" +", " "));
+			fileLines.set(lineIndex, fileLines.get(lineIndex).trim().replaceAll(" +", " "));
 			lineIndex++;
 		}
 		return fileLines;
@@ -79,11 +79,31 @@ public class VizinhoMaisProximo {
 	}
 
 	private static void type1(List<String> fileLines, int n) {
-		
+		List<Double[]> custos = new ArrayList<Double[]>();
+				
+		for(int i = 1; i < n; i++){
+			int j = 0;
+			Double[] line = new Double[n-i+1];
+			
+			for(String value: fileLines.get(i).split(" ")){
+				line[j] = Double.parseDouble(value);
+				j++;
+			}
+			line[j] = 0.0;
+			custos.add(line.clone());
+		}
+		custos.add(new Double[]{0.0});
+		//teste
+		for(int y = 0; y < n; y++){
+			for(Double num: custos.get(y))
+				System.out.print(num.toString() + " ");
+			System.out.println();
+		}
 	}
 
 	private static void type2(List<String> fileLines, int n) {
-		// TODO Auto-generated method stub
+		List<Double[]> custos = new ArrayList<Double[]>();
+		//Pendente
 		
 	}
 
@@ -97,14 +117,13 @@ public class VizinhoMaisProximo {
 				line[j] = Double.parseDouble(value);
 				j++;
 			}
-			//----->AQUI<-----
 			custos.add(line.clone());
 		}
+		
 		//teste
-		for(Double[] linha: custos){
-			for(int j = 0; j<n;j++){
-				System.out.print(linha[j].toString() + " ");
-			}
+		for(int y = 0; y < n; y++){
+			for(Double num: custos.get(y))
+				System.out.print(num.toString() + " ");
 			System.out.println();
 		}
 		
