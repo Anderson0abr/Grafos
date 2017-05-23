@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,7 +13,7 @@ public class VizinhoMaisProximo {
 
 	public static void main(String[] args) throws IOException{
 		Scanner reader = new Scanner(System.in);
-		List<String> fileLines = null;
+		List<String> fileLines = new ArrayList<String>();
 		
 		fileLines = readFile(reader, fileLines);
 		
@@ -26,20 +27,13 @@ public class VizinhoMaisProximo {
 		}*/
 		
 		reader.close();
-	}
-
-	private static int getType(List<String> fileLines) {
-		int indexTipoStart = fileLines.get(0).indexOf("Tipo=")+5;
-		int indexTipoEnd = fileLines.get(0).indexOf(" ", indexTipoStart);
-		int type = Integer.parseInt((fileLines.get(0).substring(indexTipoStart, indexTipoEnd)));
-		return type;
-	}
-
-	private static int getN(List<String> fileLines) {
-		int indexNStart = fileLines.get(0).indexOf("N=")+2;
-		int indexNEnd = fileLines.get(0).indexOf(" ", indexNStart);
-		int n = Integer.parseInt((fileLines.get(0).substring(indexNStart, indexNEnd)));
-		return n;
+		
+		if(type == 1)
+			type1(fileLines, n);
+		else if(type == 2)
+			type2(fileLines, n);
+		else if(type == 3)
+			type3(fileLines, n);
 	}
 
 	private static List<String> readFile(Scanner reader, List<String> fileLines) throws IOException{
@@ -69,6 +63,52 @@ public class VizinhoMaisProximo {
 			lineIndex++;
 		}
 		return fileLines;
+	}
+
+	private static int getN(List<String> fileLines) {
+		int indexNStart = fileLines.get(0).indexOf("N=")+2;
+		int indexNEnd = fileLines.get(0).indexOf(" ", indexNStart);
+		int n = Integer.parseInt((fileLines.get(0).substring(indexNStart, indexNEnd)));
+		return n;
+	}
+
+	private static int getType(List<String> fileLines) {
+		int indexTipoStart = fileLines.get(0).indexOf("Tipo=")+5;
+		int indexTipoEnd = fileLines.get(0).indexOf(" ", indexTipoStart);
+		int type = Integer.parseInt((fileLines.get(0).substring(indexTipoStart, indexTipoEnd)));
+		return type;
+	}
+
+	private static void type1(List<String> fileLines, int n) {
+		
+	}
+
+	private static void type2(List<String> fileLines, int n) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void type3(List<String> fileLines, int n) {
+		List<Double[]> custos = new ArrayList<Double[]>();
+		Double[] line = new Double[n];
+		
+		for(int i = 1; i <= n; i++){
+			int j = 0;
+			for(String value: fileLines.get(i).split(" ")){
+				line[j] = Double.parseDouble(value);
+				j++;
+			}
+			//----->AQUI<-----
+			custos.add(line.clone());
+		}
+		//teste
+		for(Double[] linha: custos){
+			for(int j = 0; j<n;j++){
+				System.out.print(linha[j].toString() + " ");
+			}
+			System.out.println();
+		}
+		
 	}
 
 }
