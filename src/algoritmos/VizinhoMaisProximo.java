@@ -10,31 +10,30 @@ import java.util.Scanner;
 
 public class VizinhoMaisProximo {
 
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args) throws IOException {
+
+		/* LEITURA DO ARQUIVO DE ENTRADA */
 		Scanner reader = new Scanner(System.in);
 		List<String> fileLines = new ArrayList<String>();
-		
 		fileLines = readFile(reader, fileLines);
-		
+		reader.close();
+
+		/* IDENTIFICA NUM DE VERTICES E TIPO DE MATRIZ */
 		int n = getN(fileLines);
 		int type = getType(fileLines);
-		
-		/*System.out.println(n);
-		System.out.println(type);
-		for(String line: fileLines){
-			System.out.println(line);
-		}*/
-		
-		reader.close();
-		
-		if(type == 1)
+
+		if (type == 1)
 			type1(fileLines, n);
-		else if(type == 2)
+		else if (type == 2)
 			type2(fileLines, n);
-		else if(type == 3)
+		else if (type == 3)
 			type3(fileLines, n);
 	}
 
+	/*
+	 * LÊ ARQUIVO E RETORNA UMA LISTA DE STRINGS, ONDE CADA ITEM É UMA LINHA DO
+	 * ARQUIVO
+	 */
 	private static List<String> readFile(Scanner reader, List<String> fileLines) throws IOException{
 		int maxTries = 3, i = 0;
 		while(true){
