@@ -61,6 +61,10 @@ public class VizinhoMaisProximo {
 		return fileLines;
 	}
 
+	/*
+	 * IDENTIFICA O NUM. DE VERTICES DO GRAFO PELA LEITURA DA PRIMEIRA LINHA DO
+	 * ARQUIVO DE ENTRADA
+	 */
 	private static int getN(List<String> fileLines) {
 		int indexNStart = fileLines.get(0).indexOf("N=")+2;
 		int indexNEnd = fileLines.get(0).indexOf(" ", indexNStart);
@@ -68,6 +72,11 @@ public class VizinhoMaisProximo {
 		return n;
 	}
 
+	
+	/*
+	 * IDENTIFICA O TIPO DE MATRIZ DO GRAFO PELA LEITURA DA PRIMEIRA LINHA DO
+	 * ARQUIVO DE ENTRADA
+	 */
 	private static int getType(List<String> fileLines) {
 		int indexTipoStart = fileLines.get(0).indexOf("Tipo=")+5;
 		int indexTipoEnd = fileLines.get(0).indexOf(" ", indexTipoStart);
