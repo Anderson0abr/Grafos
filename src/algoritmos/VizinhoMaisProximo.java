@@ -10,24 +10,20 @@ import java.util.Scanner;
 
 public class VizinhoMaisProximo {
 
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args) throws IOException {
+		
+		
+		/* LEITURA DO ARQUIVO DE ENTRADA */
 		Scanner reader = new Scanner(System.in);
 		List<String> fileLines = new ArrayList<String>();
-		
 		fileLines = readFile(reader, fileLines);
+		reader.close();
 		
+		/* IDENTIFICA NUM DE VERTICES E TIPO DE MATRIZ */
 		int n = getN(fileLines);
 		int type = getType(fileLines);
 		
-		/*System.out.println(n);
-		System.out.println(type);
-		for(String line: fileLines){
-			System.out.println(line);
-		}*/
-		
-		reader.close();
-		
-		if(type == 1)
+		if (type == 1)
 			type1(fileLines, n);
 		else if(type == 2)
 			type2(fileLines, n);
@@ -35,6 +31,7 @@ public class VizinhoMaisProximo {
 			type3(fileLines, n);
 	}
 
+	/* LÊ ARQUIVO E RETORNA UMA LISTA DE STRINGS, ONDE CADA ITEM É UMA LINHA DO ARQUIVO */
 	private static List<String> readFile(Scanner reader, List<String> fileLines) throws IOException{
 		int maxTries = 3, i = 0;
 		while(true){
@@ -47,11 +44,11 @@ public class VizinhoMaisProximo {
 				break;
 			}catch(IOException e){
 				if(i < maxTries-1){
-					System.out.println("--Arquivo n�o existe. Tentativas restantes (" + (maxTries - ++i) + ")--");
+					System.out.println("-- Arquivo não existe. Tentativas restantes (" + (maxTries - ++i) + ")--");
 					
 				}
 				else{
-					System.err.println("\nM�ximo de tentativas excedido. Reinicie o programa.\n");
+					System.err.println("\nMáximo de tentativas excedido. Reinicie o programa.\n");
 					throw e;
 				}
 			}
@@ -64,6 +61,7 @@ public class VizinhoMaisProximo {
 		return fileLines;
 	}
 
+	/* IDENTIFICA O NUM. DE VERTICES DO GRAFO PELA LEITURA DA PRIMEIRA LINHA DO ARQUIVO DE ENTRADA */
 	private static int getN(List<String> fileLines) {
 		int indexNStart = fileLines.get(0).indexOf("N=")+2;
 		int indexNEnd = fileLines.get(0).indexOf(" ", indexNStart);
@@ -71,6 +69,7 @@ public class VizinhoMaisProximo {
 		return n;
 	}
 
+	/* IDENTIFICA O TIPO DE MATRIZ DO GRAFO PELA LEITURA DA PRIMEIRA LINHA DO ARQUIVO DE ENTRADA */
 	private static int getType(List<String> fileLines) {
 		int indexTipoStart = fileLines.get(0).indexOf("Tipo=")+5;
 		int indexTipoEnd = fileLines.get(0).indexOf(" ", indexTipoStart);
@@ -100,6 +99,7 @@ public class VizinhoMaisProximo {
 			//----->AQUI<-----
 			custos.add(line.clone());
 		}
+		
 		//teste
 		for(Double[] linha: custos){
 			for(int j = 0; j<n;j++){
