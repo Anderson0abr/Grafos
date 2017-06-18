@@ -236,7 +236,7 @@ public class VizinhoMaisProximo {
 				line[j] = custos.get(j++)[i-1];
 			line[j++] = 0.0;
 
-			for(String value: fileLines.get(i).split(" ")){
+			for(String value: fileLines.get(i).split(" +|\t")){
 				line[j++] = Double.parseDouble(value);
 			}
 			custos.add(line.clone());
@@ -265,7 +265,7 @@ public class VizinhoMaisProximo {
 		for(int i = 1; i <= n; i++){
 			Double[] line = new Double[2];
 			int j = 0;
-			for(String value: fileLines.get(i).split(" ")){
+			for(String value: fileLines.get(i).split(" +|\t")){
 				line[j++] = Double.parseDouble(value);
 			}
 			coordenadas.add(line.clone());
@@ -297,11 +297,22 @@ public class VizinhoMaisProximo {
 		List<Double[]> custos = new ArrayList<Double[]>();
 		Double[] line = new Double[n];
 		
-		for(int i = 1; i <= n; i++){
-			int j = 0;
-			for(String value: fileLines.get(i).split(" "))
+		int j = 0;
+		int valuesRead = 0;
+		for(String entry: fileLines){
+			if(entry.equals(fileLines.get(0)))
+				continue;
+			else if(entry.isEmpty())
+				break;
+			for(String value: entry.split(" +|\t")){
 				line[j++] = Double.parseDouble(value);
-			custos.add(line.clone());
+				valuesRead++;
+			}
+			if(valuesRead == n){
+				custos.add(line.clone());
+				j = 0;
+				valuesRead = 0;
+			}
 		}
 		
 		// TESTE - APAGAR DEPOIS
