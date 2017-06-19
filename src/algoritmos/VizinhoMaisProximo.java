@@ -247,13 +247,6 @@ public class VizinhoMaisProximo {
 		line[n-1] = 0.0;
 		custos.add(line.clone());
 		
-		// TESTE - APAGAR DEPOIS
-//		for(int y = 0; y < n; y++){
-//			for(Double num: custos.get(y))
-//				System.out.print(num.toString() + " ");
-//			System.out.println();
-//		}
-		
 		return custos;
 	}
 
@@ -282,13 +275,6 @@ public class VizinhoMaisProximo {
 			custos.add(line.clone());
 		}
 		
-		// TESTE - APAGAR DEPOIS
-//		for(int y = 0; y < n; y++){
-//			for(Double num: custos.get(y))
-//				System.out.print(num.toString() + " ");
-//			System.out.println();
-//		}
-		
 		return custos;
 	}
 
@@ -314,13 +300,6 @@ public class VizinhoMaisProximo {
 				valuesRead = 0;
 			}
 		}
-		
-		// TESTE - APAGAR DEPOIS
-//		for(int y = 0; y < n; y++){
-//			for(Double num: custos.get(y))
-//				System.out.print(num.toString() + " ");
-//			System.out.println();
-//		}
 		
 		return custos;
 	}
