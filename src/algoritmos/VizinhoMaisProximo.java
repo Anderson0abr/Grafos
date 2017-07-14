@@ -148,7 +148,7 @@ public class VizinhoMaisProximo {
 				//Incrementa o custo total com o custo do ultimo vertice visitado para o vertice de partida.
 				custoCicloHamilttoniano += matrizDeDistancias.get(indiceVerticeSendoVisitado).get(indiceVerticeDePartida);
 				
-				System.out.println("-------------------------------------------------------------------------------\n\n");				
+				System.out.println("###############################################################################\n\n");				
 				System.out.println("CH: " + cicloHamiltoniano.toString());
 				System.out.println("CT: " + custoCicloHamilttoniano.toString()+ "\n\n");
 				System.out.println("-------------------------------------------------------------------------------");
